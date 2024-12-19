@@ -2,8 +2,9 @@ import pyxel
 
 class Game:
     def __init__(self):
-        self.x = 0
-        self.y = 0
+        # Sprite innerhalb der Levelgrenzen platzieren
+        self.x = 8
+        self.y = 8
 
         pyxel.init(8*8, 8*8)
         pyxel.load("my_resource.pyxres")
@@ -14,7 +15,6 @@ class Game:
 
         if pyxel.btn(pyxel.KEY_RIGHT):
             self.x += 1
-
             # Spiele Sound bei Bewegung
             # Sound muss im Pyxel-Editor erstellt werden
             # Der Sound-Editor ist im Menü an der dritten Stelle
@@ -23,7 +23,18 @@ class Game:
     def draw(self):
         "Zeichne den Bildschirm"
 
+        # Bildschirm leeren
         pyxel.cls(0)
+
+        # Level als Tilemap zeichnen
+        pyxel.bltm(
+            0,0,  # x,y (Koordinaten auf dem Bildschirm)
+            0,    # Tilemap Nummer
+            0,0,  # u,v (Koordinaten im Tilemap)
+            8*8,8*8   # Breite, Höhe
+        )
+
+        # Sprite an der aktuellen Position zeichnen
         pyxel.blt(
             self.x,self.y,  # x,y (Koordinaten auf dem Bildschirm)
             0,    # Image Nummer
