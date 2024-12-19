@@ -24,7 +24,7 @@ class Game:
 
         # Bildschirm leeren
         pyxel.cls(0)
-        # Sprite zeichnen
+        # Sprite an der aktuellen Position zeichnen
         pyxel.blt(
             self.x,self.y,  # x,y (Koordinaten auf dem Bildschirm)
             0,    # Image Nummer
