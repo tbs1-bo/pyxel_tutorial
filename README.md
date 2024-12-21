@@ -33,7 +33,7 @@ In [game_06_musik.py](game_06_musik.py) wir die Verwendung von Musik demonstrier
 
 Wenn verschiedene Sprites aufeinandertreffen, kann es zu Kollisionen kommen. So kann etwa eine Münze eingesammelt werden, wenn der Spieler sie berührt.
 
-In [game_06_kollision.py](game_06_kollision.py) wird eine einfache Kollisionserkennung implementiert.
+In [game_07_kollision.py](game_07_kollision.py) wird eine einfache Kollisionserkennung implementiert.
 
 
 ## TODO
