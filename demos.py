@@ -175,10 +175,10 @@ class Moire:
         t = time.time()
 
         # center of two circles
-        cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2;
-        cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2;
-        cx2 = math.cos(t / 3) * WIDTH / 3 + WIDTH / 2;
-        cy2 = math.cos(t) * HEIGHT / 3 + HEIGHT / 2;
+        cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2
+        cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2
+        cx2 = math.cos(t / 3) * WIDTH / 3 + WIDTH / 2
+        cy2 = math.cos(t) * HEIGHT / 3 + HEIGHT / 2
 
         for y in range(HEIGHT):
             # calculate distance from center
@@ -196,7 +196,7 @@ class Moire:
                 # xor the two distances
                 xor = rt1 ^ rt2
 
-                shade = ((xor >> 4) & 1) * 3;
+                shade = ((xor >> 4) & 1) * 3
                 pyxel.pset(x, y, shade)
 
 class DemoHandler:
