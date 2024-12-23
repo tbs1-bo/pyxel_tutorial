@@ -94,13 +94,45 @@ class RotatingPlasmaDemo:
         return v 
 
 
+class PingPong:
+    def __init__(self):
+        self.vel = [1, 1]
+        self.pos = [0, HEIGHT // 2]
+
+    def handle_px(self, x, y):
+        if x == self.pos[0] and y == self.pos[1]:
+            return True
+        else:
+            return False
+
+    def update(self):
+        if self.pos[0] + self.vel[0] > WIDTH or \
+                self.pos[0] + self.vel[0] < 0:
+            self.vel[0] = -self.vel[0]
+
+        if self.pos[1] + self.vel[1] > HEIGHT or \
+                self.pos[1] + self.vel[1] < 0:
+            self.vel[1] = -self.vel[1]
+
+        self.pos = [self.pos[0] + self.vel[0],
+                    self.pos[1] + self.vel[1]]
+
+    def draw(self):
+        pyxel.cls(0)
+        for y in range(HEIGHT):
+            for x in range(WIDTH):
+                b = self.handle_px(x, y)
+                if b:
+                    pyxel.pset(x, y, 6)
+
+
 class DemoHandler:
     def __init__(self):
         self.timestep = 0
         self.parameter1 = 0        
         self.current_demo = 0
         self.demos = [
-            SwirlDemo(), Plasma(), RotatingPlasmaDemo()
+            SwirlDemo(), Plasma(), RotatingPlasmaDemo(), PingPong()
         ]
         pyxel.init(WIDTH, HEIGHT)
         pyxel.run(self.update, self.draw)
