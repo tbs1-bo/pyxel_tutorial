@@ -6,7 +6,7 @@ import random
 WIDTH = 8*8
 HEIGHT = 8*8
 
-class SwirlDemo:
+class Swirl:
     def __init__(self):
         self.timestep = 0
         self.parameter1 = 0
@@ -68,7 +68,7 @@ class Plasma:
                    math.cos((y * self.s) + self.i / 4.0))
         return v > 0.3
 
-class RotatingPlasmaDemo:
+class RotatingPlasma:
     def __init__(self):
         self.current = time.time()
 
@@ -131,21 +131,31 @@ class DemoHandler:
         self.timestep = 0
         self.current_demo = 0
         self.demos = [
-            SwirlDemo(), Plasma(), RotatingPlasmaDemo(), PingPong()
+            Swirl(), Plasma(), RotatingPlasma(), PingPong()
         ]
+        self.__txt_vis_counter = 100
+
         pyxel.init(WIDTH, HEIGHT)
         pyxel.run(self.update, self.draw)
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_RIGHT, hold=10):
             self.current_demo += 1
+            self.__txt_vis_counter = 100
             if self.current_demo >= len(self.demos):
                 self.current_demo = 0
+
+        self.__txt_vis_counter = max(0, self.__txt_vis_counter - 1)
 
         self.demos[self.current_demo].update()
 
     def draw(self):
         self.demos[self.current_demo].draw()
+
+        if self.__txt_vis_counter > 0:
+            demo = self.demos[self.current_demo]
+            demo_name = demo.__class__.__name__
+            pyxel.text(1, 1, f"{demo_name}", 3)
 
 
 DemoHandler()
