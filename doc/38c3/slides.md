@@ -30,18 +30,6 @@ Kontakt: @pintman@chaos.social
   - Musik
 - Python
 
----
-
-# Sprite und Tilemaps
-
-![drop-shadow](pyxel_sprites_tiles.gif)
-
----
-
-# Musik
-
-![drop-shadow](pyxel_music.gif)
-
 
 ---
 
@@ -50,6 +38,34 @@ Kontakt: @pintman@chaos.social
 ![drop-shadow](pyxel_colors.png)
 
 --- 
+
+# Sprite-Editor
+
+Bei pyxel als Image bezeichnet
+
+![drop-shadow](pyxel_image_editor.gif)
+
+---
+# Tilemap-Editor
+
+Setzt Maps aus Sprites zusammen
+
+![drop-shadow](pyxel_tilemap_editor.gif)
+
+---
+
+# Sound-Editor
+
+![drop-shadow](pyxel_sound.gif)
+
+---
+
+# Musik-Editor
+
+![drop-shadow](pyxel_music.gif)
+
+
+---
 
 # Old-School-Demo-Algorithmen
 
