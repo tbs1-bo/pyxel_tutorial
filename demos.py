@@ -125,13 +125,43 @@ class PingPong:
                 if b:
                     pyxel.pset(x, y, 6)
 
+class PerlinNoise:
+    """
+    Perlin noise demo.
+
+    Inspired by https://github.com/kitao/pyxel/blob/main/python/pyxel/examples/12_perlin_noise.py
+    """
+    def __init__(self):
+        self.parameter = 0
+
+    def update(self):
+        self.parameter = max(0.1, 10 * pyxel.mouse_x / WIDTH)
+
+    def draw(self):
+        pyxel.cls(0)
+        for y in range(HEIGHT):
+            for x in range(WIDTH):
+                n = pyxel.noise(
+                    x / self.parameter, # 10,
+                    y / self.parameter, #10,
+                    pyxel.frame_count / 40
+                )
+
+                # determine color based on noise value
+                if n > 0.4: col = 7
+                elif n > 0: col = 6
+                elif n > -0.4: col = 12
+                else: col = 0
+
+                pyxel.pset(x, y, col)
+
 
 class DemoHandler:
     def __init__(self):
         self.timestep = 0
         self.current_demo = 0
         self.demos = [
-            Swirl(), Plasma(), RotatingPlasma(), PingPong()
+            Swirl(), Plasma(), RotatingPlasma(), PingPong(), PerlinNoise()
         ]
         self.__txt_vis_counter = 100
 
