@@ -129,7 +129,6 @@ class PingPong:
 class DemoHandler:
     def __init__(self):
         self.timestep = 0
-        self.parameter1 = 0        
         self.current_demo = 0
         self.demos = [
             SwirlDemo(), Plasma(), RotatingPlasmaDemo(), PingPong()
@@ -139,7 +138,6 @@ class DemoHandler:
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_RIGHT, hold=10):
-            print("next")
             self.current_demo += 1
             if self.current_demo >= len(self.demos):
                 self.current_demo = 0
