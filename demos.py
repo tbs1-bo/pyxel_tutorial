@@ -155,13 +155,57 @@ class PerlinNoise:
 
                 pyxel.pset(x, y, col)
 
+class Moire:
+    """
+    Moire pattern demo.
+
+    Inspired by https://seancode.com/demofx/
+    """
+    def __init__(self):
+        pass
+
+    def update(self):
+        pass
+
+    def draw(self):
+        pyxel.cls(0)
+        self.moire()
+
+    def moire(self):
+        t = time.time()
+
+        # center of two circles
+        cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2;
+        cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2;
+        cx2 = math.cos(t / 3) * WIDTH / 3 + WIDTH / 2;
+        cy2 = math.cos(t) * HEIGHT / 3 + HEIGHT / 2;
+
+        for y in range(HEIGHT):
+            # calculate distance from center
+            dy = (y - cy1) * (y - cy1)
+            dy2 = (y - cy2) * (y - cy2)
+            for x in range(WIDTH):
+                # calculate distance from center
+                dx = (x - cx1) * (x - cx1)
+                dx2 = (x - cx2) * (x - cx2)
+
+                # calculate distance between two points
+                rt1 = int(math.sqrt(dx + dy))
+                rt2 = int(math.sqrt(dx2 + dy2))
+
+                # xor the two distances
+                xor = rt1 ^ rt2
+
+                shade = ((xor >> 4) & 1) * 3;
+                pyxel.pset(x, y, shade)
 
 class DemoHandler:
     def __init__(self):
         self.timestep = 0
         self.current_demo = 0
         self.demos = [
-            Swirl(), Plasma(), RotatingPlasma(), PingPong(), PerlinNoise()
+            Swirl(), Plasma(), RotatingPlasma(), PingPong(), 
+            PerlinNoise(), Moire()
         ]
         self.__txt_vis_counter = 100
 
