@@ -10,7 +10,9 @@ author: Pintman
 
 # Old-School demos mit pyxel!
 
-Kontakt: @pintman@chaos.social
+- Kontakt: 
+  - Mastodon: @pintman@chaos.social
+  - Mail: pintman@0xabc.de
 
 ---
 
@@ -68,6 +70,7 @@ import pyxel
 
 class App:
     def __init__(self):
+        self.x = 0
         pyxel.init(64, 64)
         pyxel.run(self.update, self.draw)
 
@@ -255,26 +258,21 @@ class PerlinNoise:
 
 ```python
 class Moire:
-    def __init__(self): ...
-
-    def update(self): ...
-
+    ...
     def draw(self):
         pyxel.cls(0)
         t = time.time()
-
-        # center of two circles
+        # moving center of two circles
         cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2
         cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2
-        cx2 = math.cos(t / 3) * WIDTH / 3 + WIDTH / 2
-        cy2 = math.cos(t) * HEIGHT / 3 + HEIGHT / 2
+        ...
 
         for y in range(HEIGHT):
-            # calculate distance from center
+            # calculate distance for y
             dy = (y - cy1) * (y - cy1)
             dy2 = (y - cy2) * (y - cy2)
             for x in range(WIDTH):
-                # calculate distance from center
+                # ... and x
                 dx = (x - cx1) * (x - cx1)
                 dx2 = (x - cx2) * (x - cx2)
 
@@ -294,8 +292,8 @@ class Moire:
 # Quellen
 
 - Pyxel: 
-  - github.com/kitao/pyxel
+  - https://github.com/kitao/pyxel
 - Meine Demos: 
-  - github.com/tbs1-bo/pyxel-tutorial
+  - https://github.com/tbs1-bo/pyxel-tutorial
 - Demo-Effekte:
-  - seancode.com/demofx/
+  - https://seancode.com/demofx/
