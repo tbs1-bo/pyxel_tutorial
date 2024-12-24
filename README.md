@@ -36,6 +36,10 @@ Wenn verschiedene Sprites aufeinandertreffen, kann es zu Kollisionen kommen. So 
 In [game_07_kollision.py](game_07_kollision.py) wird eine einfache Kollisionserkennung implementiert.
 
 
+## Präsentation
+
+- [Folien für den 38c3](https://tbs1-bo.github.io/38c3/slides.html)
+
 ## TODO
 
 Die Physik-Engine [PyMonk](http://www.pymunk.org)
