@@ -23,15 +23,16 @@ author: Pintman
 
 ---
 
-# Flipdotanzeige
+# Flipdotanzeige (Labor, Saal 3)
 
 Demos vorhanden.
+Ähnlichkeiten: Geringe Auflösung, wenige Farben
 
 ![auto drop-shadow](flipdotdisplay.jpg)
 
 ---
 
-# Aufruf c3clounge
+# Aufruf c3lounge
 
 Ein sinnvoller Anlass
 
@@ -42,7 +43,7 @@ Ein sinnvoller Anlass
 # pyxel
 
 - Einfache Python Game-Engine
-- inspiriert von PICO-8
+- inspiriert von PICO-8 (aber kostenlos)
 - Editoren für
   - Sprites
   - Tilemaps
@@ -51,35 +52,22 @@ Ein sinnvoller Anlass
 
 ---
 
-# Sprite-Editor
+# Sprite- und Tilemap-Editor
 
-Bei pyxel als Image bezeichnet
+Sprite: Bei pyxel als Image bezeichnet
+Tilemaps werden aus Sprites zusammengesetzt
 
-![drop-shadow](pyxel_image_editor.gif)
-
----
-
-# Tilemap-Editor
-
-Setzt Maps aus Sprites zusammen
-
-![drop-shadow](pyxel_tilemap_editor.gif)
+![drop-shadow](pyxel_image_editor.gif) ![drop-shadow](pyxel_tilemap_editor.gif)
 
 ---
 
-# Sound-Editor
+# Sound- und Musik-Editor
 
-![drop-shadow](pyxel_sound.gif)
-
----
-
-# Musik-Editor
-
-![drop-shadow](pyxel_music.gif)
+![drop-shadow](pyxel_sound.gif) ![drop-shadow](pyxel_music.gif)
 
 ---
 
-# Einfaches Programm
+# Einfaches Programm (Hello World)
 
 ```python
 import pyxel
@@ -105,7 +93,6 @@ App()
 # Old-School Demo-Algorithmen
 
 - Plasma
-- Swirl
 - Moire
 - Perlin Noise
 
@@ -174,50 +161,6 @@ class RotatingPlasma:
 ```
 
 ---
-# Swirl
-
-![w:400 drop-shadow](swirl.gif)
-
----
-
-# Swirl (Code)
-
-```python
-class Swirl:
-    def __init__(self):
-        self.timestep = 0
-        self.parameter1 = 0
-        
-    def update(self):
-        self.timestep = math.sin(time.time() / 18) * 1500
-        self.parameter1 = pyxel.mouse_x / WIDTH
-
-    def draw(self):
-        # clear and iterate each pixel x,y
-        ...
-        if self.swirl(x, y, self.timestep) > 0.2:
-            col = random.randint(5, 6)
-            pyxel.pset(x, y, col)
-
-    def swirl(self, x, y, step):
-        x -= (WIDTH/2.0)
-        y -= (HEIGHT/2.0)
-
-        dist = math.sqrt(pow(x, 2) + pow(y, 2))
-        angle = (step / 10.0) + dist / 1.5
-
-        s = math.sin(angle)
-        c = math.cos(angle)
-
-        xs = x * c - y * s
-        ys = x * s + y * c
-
-        r = abs(xs + ys)
-        val =  max(0.0, 0.7 - min(1.0, r/8.0))
-        return val
-```
-
----
 # Perlin Noise
 
 - Durch Mouse-Bewegung beeinflussbar
@@ -256,9 +199,10 @@ class PerlinNoise:
 
 ---
 # Moire
+
 - Zwei Brennpunkte
 - Distanz zwischen Pixel und Brennpunkten berechnen
-- XOR der Distanzen und durch Ringdicke teilen
+- XOR der Distanzen bilden und durch Ringdicke teilen
 
 ![w:320 drop-shadow](moire.gif)
 
@@ -311,19 +255,64 @@ $ pyxel app2html pyxel_tutorial.pyxapp
 
 ---
 
-# Quellen
+## Quellen
 
-- Pyxel: 
-  - https://github.com/kitao/pyxel
-- Meine Demos/Folien:
-  - https://github.com/tbs1-bo/pyxel_tutorial
-- Beschreibungen von Demo-Effekten:
-  - https://seancode.com/demofx/
-- Demos als HTML-Export
-  - https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
+- Pyxel: https://github.com/kitao/pyxel
+- Meine Demos/Folien: https://github.com/tbs1-bo/pyxel_tutorial
+- Beschreibungen von Demo-Effekten: https://seancode.com/demofx/
+- Demos als HTML-Export: https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
 
 
-# Kontakt
+## Kontakt
 
 - Mastodon: @pintman@chaos.social
 - Mail: pintman@0xabc.de
+
+---
+
+# Weitere Demos
+
+---
+# Swirl
+
+![w:400 drop-shadow](swirl.gif)
+
+---
+
+# Swirl (Code)
+
+```python
+class Swirl:
+    def __init__(self):
+        self.timestep = 0
+        self.parameter1 = 0
+        
+    def update(self):
+        self.timestep = math.sin(time.time() / 18) * 1500
+        self.parameter1 = pyxel.mouse_x / WIDTH
+
+    def draw(self):
+        # clear and iterate each pixel x,y
+        ...
+        if self.swirl(x, y, self.timestep) > 0.2:
+            col = random.randint(5, 6)
+            pyxel.pset(x, y, col)
+
+    def swirl(self, x, y, step):
+        x -= (WIDTH/2.0)
+        y -= (HEIGHT/2.0)
+
+        dist = math.sqrt(pow(x, 2) + pow(y, 2))
+        angle = (step / 10.0) + dist / 1.5
+
+        s = math.sin(angle)
+        c = math.cos(angle)
+
+        xs = x * c - y * s
+        ys = x * s + y * c
+
+        r = abs(xs + ys)
+        val =  max(0.0, 0.7 - min(1.0, r/8.0))
+        return val
+```
+
