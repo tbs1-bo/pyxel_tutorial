@@ -300,13 +300,24 @@ class PerlinNoise:
 
 ---
 
+# Web-App
+
+Export als Executable oder Web-App möglich
+
+```shell
+$ pyxel papacke . demos.py
+$ pyxel app2html pyxel_tutorial.pyxapp
+```
+
+---
+
 # Quellen
 
 - Pyxel: 
   - https://github.com/kitao/pyxel
 - Meine Demos/Folien:
-  - https://github.com/tbs1-bo/pyxel-tutorial
-- Beschreibungen von Demo-Effekte:
+  - https://github.com/tbs1-bo/pyxel_tutorial
+- Beschreibungen von Demo-Effekten:
   - https://seancode.com/demofx/
 - Demos als HTML-Export
   - https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
