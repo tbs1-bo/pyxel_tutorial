@@ -23,14 +23,14 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" lang="de-DE">
 <h1 id="motivation">Motivation</h1>
 <ul>
-<li>Einfache Game-Engine lernen -&gt; pyxel</li>
+<li>Einfache Game-Engine lernen -&gt; pyxel (<a href="https://github.com/kitao/pyxel">https://github.com/kitao/pyxel</a>)</li>
 <li>Einfache Algorithmen für Old-School Demos</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" lang="de-DE">
 <h1 id="flipdotanzeige">Flipdotanzeige</h1>
 <p>Demos vorhanden.</p>
-<p><img src="flipdotdisplay.jpg" alt="" style="width:800px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
+<p><img src="flipdotdisplay.jpg" alt="auto" style="filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" lang="de-DE">
 <h1 id="aufruf-c3clounge">Aufruf c3clounge</h1>
@@ -104,7 +104,7 @@ App()
 <p><img src="checker.gif" alt="" style="width:400px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" lang="de-DE">
-<h1 id="plasma-1">&quot;Plasma&quot;</h1>
+<h1 id="plasma-code">&quot;Plasma&quot; (Code)</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Plasma</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         self.i = <span class="hljs-number">0</span>
@@ -132,7 +132,7 @@ App()
 <p><img src="rotating_plasma.gif" alt="" style="width:400px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" lang="de-DE">
-<h1 id="rotating-plasma-1">Rotating Plasma</h1>
+<h1 id="rotating-plasma-code">Rotating Plasma (Code)</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">RotatingPlasma</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         self.current = time.time()
@@ -160,7 +160,7 @@ App()
 <p><img src="swirl.gif" alt="" style="width:400px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" lang="de-DE">
-<h1 id="swirl-1">Swirl</h1>
+<h1 id="swirl-code">Swirl (Code)</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Swirl</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         self.timestep = <span class="hljs-number">0</span>
@@ -204,7 +204,7 @@ App()
 <p><img src="perlin_noise.gif" alt="" style="width:400px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" lang="de-DE">
-<h1 id="perlin-noise-1">Perlin Noise</h1>
+<h1 id="perlin-noise-code">Perlin Noise (Code)</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PerlinNoise</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
         self.parameter = <span class="hljs-number">0</span>
@@ -240,36 +240,40 @@ App()
 <p><img src="moire.gif" alt="" style="width:320px;filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" lang="de-DE">
-<h1 id="moire-1">Moire</h1>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Moire</span>:
-    ...
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):
+<h1 id="moire-code">Moire (Code)</h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python">    <span class="hljs-keyword">def</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params">self</span>):
         pyxel.cls(<span class="hljs-number">0</span>)
         t = time.time()
-        <span class="hljs-comment"># moving center of two circles</span>
+        <span class="hljs-comment"># moving center of two circles c1 and c2</span>
         cx1 = math.sin(t / <span class="hljs-number">2</span>) * WIDTH / <span class="hljs-number">3</span> + WIDTH / <span class="hljs-number">2</span>
         cy1 = math.sin(t / <span class="hljs-number">4</span>) * HEIGHT / <span class="hljs-number">3</span> + HEIGHT / <span class="hljs-number">2</span>
         ...
-        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(HEIGHT):
-            <span class="hljs-comment"># calculate distance for y</span>
+        <span class="hljs-keyword">for</span> y <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(HEIGHT): <span class="hljs-comment"># calculate distance for y</span>
             dy = (y - cy1) * (y - cy1)
             dy2 = (y - cy2) * (y - cy2)
-            <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(WIDTH):
-                <span class="hljs-comment"># ... and x</span>
+            <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(WIDTH): <span class="hljs-comment"># ... and x</span>
                 dx = (x - cx1) * (x - cx1)
                 dx2 = (x - cx2) * (x - cx2)
 
-                <span class="hljs-comment"># calculate distance between two points</span>
+                <span class="hljs-comment"># distances</span>
                 rt1 = <span class="hljs-built_in">int</span>(math.sqrt(dx + dy))
                 rt2 = <span class="hljs-built_in">int</span>(math.sqrt(dx2 + dy2))
 
-                xor = rt1 ^ rt2  <span class="hljs-comment"># xor the two distances</span>
-
-                shade = ((xor &gt;&gt; <span class="hljs-number">4</span>) &amp; <span class="hljs-number">1</span>) * <span class="hljs-number">3</span>
+                xored = rt1 ^ rt2  <span class="hljs-comment"># xor the two distances</span>
+            
+                shade = ((xored &gt;&gt; <span class="hljs-number">4</span>) &amp; <span class="hljs-number">1</span>) * <span class="hljs-number">3</span> <span class="hljs-comment"># fancy division</span>
                 pyxel.pset(x, y, shade)
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" lang="de-DE">
+<h1 id="ausblick">Ausblick</h1>
+<ul>
+<li>weitere Effekte (Paletten, ...)</li>
+<li>Mode 7</li>
+<li>Tiles, Sound, Musik integrieren</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" lang="de-DE">
 <h1 id="quellen">Quellen</h1>
 <ul>
 <li>Pyxel:
@@ -277,12 +281,12 @@ App()
 <li><a href="https://github.com/kitao/pyxel">https://github.com/kitao/pyxel</a></li>
 </ul>
 </li>
-<li>Meine Demos:
+<li>Meine Demos/Folien:
 <ul>
 <li><a href="https://github.com/tbs1-bo/pyxel-tutorial">https://github.com/tbs1-bo/pyxel-tutorial</a></li>
 </ul>
 </li>
-<li>Demo-Effekte:
+<li>Beschreibungen von Demo-Effekte:
 <ul>
 <li><a href="https://seancode.com/demofx/">https://seancode.com/demofx/</a></li>
 </ul>

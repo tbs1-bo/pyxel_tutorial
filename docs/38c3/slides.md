@@ -18,7 +18,7 @@ author: Pintman
 
 # Motivation
 
-- Einfache Game-Engine lernen -> pyxel
+- Einfache Game-Engine lernen -> pyxel (https://github.com/kitao/pyxel)
 - Einfache Algorithmen für Old-School Demos
 
 ---
@@ -27,7 +27,7 @@ author: Pintman
 
 Demos vorhanden.
 
-![w:800 drop-shadow](flipdotdisplay.jpg)
+![auto drop-shadow](flipdotdisplay.jpg)
 
 ---
 
@@ -116,7 +116,7 @@ App()
 
 ---
 
-# "Plasma"
+# "Plasma" (Code)
 
 ```python
 class Plasma:
@@ -148,7 +148,7 @@ class Plasma:
 
 ---
 
-# Rotating Plasma
+# Rotating Plasma (Code)
 
 ```python
 class RotatingPlasma:
@@ -180,7 +180,7 @@ class RotatingPlasma:
 
 ---
 
-# Swirl
+# Swirl (Code)
 
 ```python
 class Swirl:
@@ -226,7 +226,7 @@ class Swirl:
 ![w:400 drop-shadow](perlin_noise.gif)
 
 ---
-# Perlin Noise
+# Perlin Noise (Code)
 
 ```python
 class PerlinNoise:
@@ -264,36 +264,39 @@ class PerlinNoise:
 
 ---
 
-# Moire
+# Moire (Code)
 
 ```python
-class Moire:
-    ...
     def draw(self):
         pyxel.cls(0)
         t = time.time()
-        # moving center of two circles
+        # moving center of two circles c1 and c2
         cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2
         cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2
         ...
-        for y in range(HEIGHT):
-            # calculate distance for y
+        for y in range(HEIGHT): # calculate distance for y
             dy = (y - cy1) * (y - cy1)
             dy2 = (y - cy2) * (y - cy2)
-            for x in range(WIDTH):
-                # ... and x
+            for x in range(WIDTH): # ... and x
                 dx = (x - cx1) * (x - cx1)
                 dx2 = (x - cx2) * (x - cx2)
 
-                # calculate distance between two points
+                # distances
                 rt1 = int(math.sqrt(dx + dy))
                 rt2 = int(math.sqrt(dx2 + dy2))
 
-                xor = rt1 ^ rt2  # xor the two distances
-
-                shade = ((xor >> 4) & 1) * 3
+                xored = rt1 ^ rt2  # xor the two distances
+            
+                shade = ((xored >> 4) & 1) * 3 # fancy division
                 pyxel.pset(x, y, shade)
 ```
+---
+
+# Ausblick
+
+- weitere Effekte (Paletten, ...)
+- Mode 7
+- Tiles, Sound, Musik integrieren
 
 ---
 
@@ -301,9 +304,9 @@ class Moire:
 
 - Pyxel: 
   - https://github.com/kitao/pyxel
-- Meine Demos: 
+- Meine Demos/Folien:
   - https://github.com/tbs1-bo/pyxel-tutorial
-- Demo-Effekte:
+- Beschreibungen von Demo-Effekte:
   - https://seancode.com/demofx/
 
 # Kontakt
