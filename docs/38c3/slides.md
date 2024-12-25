@@ -308,6 +308,9 @@ class PerlinNoise:
   - https://github.com/tbs1-bo/pyxel-tutorial
 - Beschreibungen von Demo-Effekte:
   - https://seancode.com/demofx/
+- Demos als HTML-Export
+  - https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
+
 
 # Kontakt
 
