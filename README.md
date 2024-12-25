@@ -38,7 +38,8 @@ In [game_07_kollision.py](game_07_kollision.py) wird eine einfache Kollisionserk
 
 ## Präsentation
 
-- [Folien für den 38c3](https://tbs1-bo.github.io/pyxel_tutorial/38c3/slides.html)
+- [Folien für den 38c3](https://tbs1-bo.github.io/pyxel_tutorial/38c3/slides.html),
+[Demos](https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html)
 
 ## TODO
 
