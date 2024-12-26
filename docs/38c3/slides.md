@@ -23,10 +23,10 @@ author: Pintman
 
 ---
 
-# Flipdotanzeige (Labor, Saal 3)
+# Flipdotanzeige (Labor Assembly, Saal 3)
 
-Demos vorhanden.
-Ähnlichkeiten: Geringe Auflösung, wenige Farben
+- Demos waren vorhanden.
+- Ähnlichkeiten: Geringe Auflösung, wenige Farben
 
 ![auto drop-shadow](flipdotdisplay.jpg)
 
@@ -34,7 +34,7 @@ Demos vorhanden.
 
 # Aufruf c3lounge
 
-Ein sinnvoller Anlass
+Ein sinnvoller Anlass:
 
 ![w:900 drop-shadow](c3lounge_text.png)
 
@@ -92,9 +92,12 @@ App()
 
 # Old-School Demo-Algorithmen
 
-- Plasma
-- Moire
-- Perlin Noise
+- Plasma 
+![drop-shadow](checker.gif) ![drop-shadow](rotating_plasma.gif)
+- Perlin Noise 
+![drop-shadow](perlin_noise.gif)
+- Moire 
+![drop-shadow](moire.gif)
 
 ---
 # "Plasma"
@@ -117,12 +120,13 @@ class Plasma:
 
     def draw(self):
         pyxel.cls(0) # clear screen
-        for y in range(HEIGHT):
+        for y in range(HEIGHT): # iterate all pixels x,y
             for x in range(WIDTH):
                 if self.draw_px(x, y):
-                    pyxel.pset(x, y, 6)
+                    pyxel.pset(x, y, 6) # set pixel with pyxel
 
     def draw_px(self, x, y):
+        # fancy trig-math
         v = 0.3 + (0.3 * math.sin((x * self.s) + self.i / 4.0) * 
                    math.cos((y * self.s) + self.i / 4.0))
         return v > 0.3
@@ -140,24 +144,21 @@ class Plasma:
 ```python
 class RotatingPlasma:
     def __init__(self):
-        self.current = time.time()
+        self.t = time.time()
 
     def update(self):
-        self.current = time.time()
+        self.t = time.time()
 
     def draw(self):
         # clear and iterate each pixel x,y
         ...
-        if self.draw_px(x, y):
-            pyxel.pset(x, y, int(b * 3))
-
-    def draw_px(self, x, y):
-        v = math.sin(1*(0.5*x*math.sin(self.current/2) +
-                        0.5*y*math.cos(self.current/3)) + self.current)
+        v = math.sin(1 * (0.5 * x * math.sin(self.t/2) +
+                          0.5 * y * math.cos(self.t/3)) + self.t)
         # -1 < sin() < +1
-        # therfore correct the value and bring into range [0, 1]
-        v = (v+1.0) / 2.0
-        return v 
+        # map the value range [0, 1]
+        v = (v + 1.0) / 2.0
+        if v > 0.3:
+            pyxel.pset(x, y, int(b * 3))
 ```
 
 ---
@@ -174,17 +175,18 @@ class RotatingPlasma:
 ```python
 class PerlinNoise:
     def __init__(self):
-        self.parameter = 0
+        self.mouse_parameter = 1
 
     def update(self):
-        self.parameter = max(0.1, 10 * pyxel.mouse_x / WIDTH)
+        # get mouse x-position from pyxel
+        self.mouse_parameter = max(0.1, 10 * pyxel.mouse_x / WIDTH)
 
     def draw(self):
         # clear and iterate each pixel x,y
         ...
         n = pyxel.noise(
-            x / self.parameter,
-            y / self.parameter,
+            x / self.mouse_parameter,
+            y / self.mouse_parameter,
             pyxel.frame_count / 40
         )
 
@@ -231,8 +233,8 @@ class PerlinNoise:
 
                 xored = rt1 ^ rt2  # xor the two distances
             
-                shade = ((xored >> 4) & 1) * 3 # fancy division
-                pyxel.pset(x, y, shade)
+                shade = ((xored >> 4) & 1) # fancy division and mapping to 0,1
+                pyxel.pset(x, y, shade * 3)
 ```
 ---
 
@@ -257,11 +259,10 @@ $ pyxel app2html pyxel_tutorial.pyxapp
 
 ## Quellen
 
-- Pyxel: https://github.com/kitao/pyxel
 - Meine Demos/Folien: https://github.com/tbs1-bo/pyxel_tutorial
-- Beschreibungen von Demo-Effekten: https://seancode.com/demofx/
 - Demos als HTML-Export: https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
-
+- Pyxel: https://github.com/kitao/pyxel
+- Beschreibungen von Demo-Effekten: https://seancode.com/demofx
 
 ## Kontakt
 
