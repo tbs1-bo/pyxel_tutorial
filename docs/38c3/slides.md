@@ -18,7 +18,7 @@ author: Pintman
 
 # Motivation
 
-- Einfache Game-Engine lernen -> pyxel (https://github.com/kitao/pyxel)
+- Einfache Game-Engine lernen -> pyxel 
 - Einfache Algorithmen für Old-School Demos
 
 ---
@@ -38,11 +38,14 @@ Ein sinnvoller Anlass:
 
 ![w:900 drop-shadow](c3lounge_text.png)
 
+https://chaos.social/@c3lounge/113698624147114424
+
 ---
 
 # pyxel
 
-- Einfache Python Game-Engine
+- Einfache integrierte Python Game-Engine
+  - https://github.com/kitao/pyxel
 - inspiriert von PICO-8 (aber kostenlos)
 - Editoren für
   - Sprites
@@ -90,14 +93,127 @@ App()
 
 ---
 
-# Old-School Demo-Algorithmen
+# Old-School Demo-Algorithmen (Auswahl)
 
-- Plasma 
-![drop-shadow](checker.gif) ![drop-shadow](rotating_plasma.gif)
-- Perlin Noise 
-![drop-shadow](perlin_noise.gif)
-- Moire 
-![drop-shadow](moire.gif)
+Plasma ![drop-shadow](checker.gif) ![drop-shadow](rotating_plasma.gif)
+Perlin Noise  ![drop-shadow](perlin_noise.gif)
+Moire ![drop-shadow](moire.gif)
+Swirl ![drop-shadow](swirl.gif)
+
+---
+# Moire
+
+- Zwei Brennpunkte
+- Distanz zwischen Pixel und Brennpunkten berechnen
+- XOR der Distanzen bilden und durch Ringdicke teilen
+
+![w:320 drop-shadow](moire.gif)
+
+---
+
+# Moire (Code)
+
+```python
+    def draw(self):
+        pyxel.cls(0)
+        t = time.time()
+        # moving center of two circles c1 and c2
+        cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2
+        cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2
+        ...
+        for y in range(HEIGHT): # calculate distance for y
+            dy = (y - cy1) * (y - cy1)
+            dy2 = (y - cy2) * (y - cy2)
+            for x in range(WIDTH): # ... and x
+                dx = (x - cx1) * (x - cx1)
+                dx2 = (x - cx2) * (x - cx2)
+
+                # distances
+                rt1 = int(math.sqrt(dx + dy))
+                rt2 = int(math.sqrt(dx2 + dy2))
+
+                xored = rt1 ^ rt2  # xor the two distances
+            
+                shade = ((xored >> 4) & 1) # fancy division and mapping to 0,1
+                pyxel.pset(x, y, shade * 3)
+```
+---
+
+# Perlin Noise
+
+- Durch Mouse-Bewegung beeinflussbar
+- out of the box
+
+![w:400 drop-shadow](perlin_noise.gif)
+
+---
+# Perlin Noise (Code)
+
+```python
+class PerlinNoise:
+    def __init__(self):
+        self.mouse_parameter = 1
+
+    def update(self):
+        # get mouse x-position from pyxel
+        self.mouse_parameter = max(0.1, 10 * pyxel.mouse_x / WIDTH)
+
+    def draw(self):
+        # clear and iterate each pixel x,y
+        ...
+        n = pyxel.noise(
+            x / self.mouse_parameter,
+            y / self.mouse_parameter,
+            pyxel.frame_count / 40
+        )
+
+        # determine color based on noise value
+        if n > 0.4: col = 7
+        elif n > 0: col = 6
+        elif n > -0.4: col = 12
+        else: col = 0
+
+        pyxel.pset(x, y, col)
+```
+
+---
+
+
+# Ausblick
+
+- weitere Effekte (Paletten, ...)
+- Mode 7
+- Tiles, Sound, Musik integrieren
+
+---
+
+# Web-App
+
+Export als Executable oder Web-App möglich
+
+```shell
+$ pyxel papacke . demos.py
+$ pyxel app2html pyxel_tutorial.pyxapp
+```
+
+---
+
+## Quellen
+
+- Meine Demos/Folien: https://github.com/tbs1-bo/pyxel_tutorial
+- Demos als HTML-Export: https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
+- Pyxel: https://github.com/kitao/pyxel
+- Beschreibungen von Demo-Effekten: https://seancode.com/demofx
+
+## Kontakt
+
+- Mastodon: @pintman@chaos.social
+- Mail: pintman@0xabc.de
+
+---
+
+# Weitere Demos
+
 
 ---
 # "Plasma"
@@ -161,117 +277,6 @@ class RotatingPlasma:
             pyxel.pset(x, y, int(b * 3))
 ```
 
----
-# Perlin Noise
-
-- Durch Mouse-Bewegung beeinflussbar
-- out of the box
-
-![w:400 drop-shadow](perlin_noise.gif)
-
----
-# Perlin Noise (Code)
-
-```python
-class PerlinNoise:
-    def __init__(self):
-        self.mouse_parameter = 1
-
-    def update(self):
-        # get mouse x-position from pyxel
-        self.mouse_parameter = max(0.1, 10 * pyxel.mouse_x / WIDTH)
-
-    def draw(self):
-        # clear and iterate each pixel x,y
-        ...
-        n = pyxel.noise(
-            x / self.mouse_parameter,
-            y / self.mouse_parameter,
-            pyxel.frame_count / 40
-        )
-
-        # determine color based on noise value
-        if n > 0.4: col = 7
-        elif n > 0: col = 6
-        elif n > -0.4: col = 12
-        else: col = 0
-
-        pyxel.pset(x, y, col)
-```
-
----
-# Moire
-
-- Zwei Brennpunkte
-- Distanz zwischen Pixel und Brennpunkten berechnen
-- XOR der Distanzen bilden und durch Ringdicke teilen
-
-![w:320 drop-shadow](moire.gif)
-
----
-
-# Moire (Code)
-
-```python
-    def draw(self):
-        pyxel.cls(0)
-        t = time.time()
-        # moving center of two circles c1 and c2
-        cx1 = math.sin(t / 2) * WIDTH / 3 + WIDTH / 2
-        cy1 = math.sin(t / 4) * HEIGHT / 3 + HEIGHT / 2
-        ...
-        for y in range(HEIGHT): # calculate distance for y
-            dy = (y - cy1) * (y - cy1)
-            dy2 = (y - cy2) * (y - cy2)
-            for x in range(WIDTH): # ... and x
-                dx = (x - cx1) * (x - cx1)
-                dx2 = (x - cx2) * (x - cx2)
-
-                # distances
-                rt1 = int(math.sqrt(dx + dy))
-                rt2 = int(math.sqrt(dx2 + dy2))
-
-                xored = rt1 ^ rt2  # xor the two distances
-            
-                shade = ((xored >> 4) & 1) # fancy division and mapping to 0,1
-                pyxel.pset(x, y, shade * 3)
-```
----
-
-# Ausblick
-
-- weitere Effekte (Paletten, ...)
-- Mode 7
-- Tiles, Sound, Musik integrieren
-
----
-
-# Web-App
-
-Export als Executable oder Web-App möglich
-
-```shell
-$ pyxel papacke . demos.py
-$ pyxel app2html pyxel_tutorial.pyxapp
-```
-
----
-
-## Quellen
-
-- Meine Demos/Folien: https://github.com/tbs1-bo/pyxel_tutorial
-- Demos als HTML-Export: https://tbs1-bo.github.io/pyxel_tutorial/38c3/demos.html
-- Pyxel: https://github.com/kitao/pyxel
-- Beschreibungen von Demo-Effekten: https://seancode.com/demofx
-
-## Kontakt
-
-- Mastodon: @pintman@chaos.social
-- Mail: pintman@0xabc.de
-
----
-
-# Weitere Demos
 
 ---
 # Swirl
