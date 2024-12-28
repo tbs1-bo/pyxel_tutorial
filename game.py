@@ -6,7 +6,7 @@ class Game:
         self.y = 8
 
         pyxel.init(8*8, 8*8)
-        pyxel.load("res.pyxres")
+        pyxel.load("my_resource.pyxres")
         pyxel.run(self.update, self.draw)
 
     def update(self):
