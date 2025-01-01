@@ -38,8 +38,8 @@ In [game_07_kollision.py](game_07_kollision.py) wird eine einfache Kollisionserk
 
 ## Präsentation
 
-- [Folien für den 38c3](https://tbs1-bo.github.io/pyxel_tutorial/38c3/slides.html),
-[Demos (bei itch.io)](https://pintman.itch.io/old-school-demos-pyxel), [Lightning Talk](https://www.youtube.com/watch?v=gBa3b2HRqlQ)
+- Lightning Talk beim 38c3: [Folien](https://tbs1-bo.github.io/pyxel_tutorial/38c3/slides.html),
+[Demos (bei itch.io)](https://pintman.itch.io/old-school-demos-pyxel), [Video](https://www.youtube.com/watch?v=gBa3b2HRqlQ)
 
 ## TODO
 
