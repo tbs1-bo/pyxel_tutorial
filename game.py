@@ -1,56 +1,70 @@
 import pyxel
 
+class Player:
+    def __init__(self, x, y):
+        self.xy = x,y
+        self.width = 8
+        self.height = 8
+
+    def draw(self):
+        px, py = self.xy
+        pyxel.blt(px, py, 0, 8, 0, self.width, self.height)
+        pyxel.text(0, 0, "x: %d, y: %d" % (self.xy), 1)
+
+    def move(self):
+        newx, newy = self.xy
+
+        if pyxel.btn(pyxel.KEY_LEFT):
+            newx += - 1
+        if pyxel.btn(pyxel.KEY_RIGHT):
+            newx += + 1
+        if pyxel.btn(pyxel.KEY_UP):
+            newy += - 1
+        if pyxel.btn(pyxel.KEY_DOWN):
+            newy += + 1
+
+        return newx, newy
+
 class Game:
     def __init__(self):
-        self.x = 8
-        self.y = 8
+        self.player = Player(9, 8)
 
         pyxel.init(8*8, 8*8)
-        pyxel.load("res.pyxres")
+        pyxel.load("my_resource.pyxres")
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        newx, newy = self.x, self.y
-
-        if pyxel.btn(pyxel.KEY_LEFT):
-            newx = self.x - 1
-        if pyxel.btn(pyxel.KEY_RIGHT):
-            newx = self.x + 1
-        if pyxel.btn(pyxel.KEY_UP):
-            newy = self.y - 1
-        if pyxel.btn(pyxel.KEY_DOWN):
-            newy = self.y + 1
-
-        if (self.x,self.y)!=(newx,newy) and not self.collides(newx, newy):
-            self.x, self.y = newx, newy
+        newx, newy = self.player.move()        
+        if (self.player.xy)!=(newx,newy) and self.inside(newx, newy):
+            self.player.xy = newx, newy
             pyxel.play(0, 0)
 
         if self.coin_found():
             pyxel.play(1,1)
             print("coin found")
-            pyxel.tilemaps[0].pset(self.x//8, self.y//8, (0,0))
+            px, py = self.player.xy
+            EMPTY = 0,0
+            # TODO currently not working
+            pyxel.tilemaps[0].pset(px//8, py//8, EMPTY)
 
     def coin_found(self):
         tm = pyxel.tilemaps[0]
-        return tm.pget(self.x//8, self.y//8) == (1,1)
+        px, py = self.player.xy
+        COIN = 1,1
+        return tm.pget(px//8, py//8) == COIN
 
-    def collides(self, x, y):
-        tm = pyxel.tilemaps[0]
-
-        return tm.pget(x//8, y//8) == (0,1) or \
-            tm.pget((x+7)//8, y//8) == (0,1) or \
-            tm.pget(x//8, (y+7)//8) == (0,1)
-
-        #return pyxel.tilemap(0).pget(x//8, y//8) != (0,0)         
+    def inside(self, x, y):
+        return 8 <= x <= 48 and 8 <= y <= 48
 
     def draw(self):
         pyxel.cls(0)
+
         # tilemap
         # bltm(x, y, tm, u, v, w, h, [colkey], [rotate], [scale])
-        pyxel.bltm(0, 0, 0, 0,0, 8*8,8*8)
+        pyxel.bltm(0, 0, 0, 8*8,0, 8*8,8*8)
 
         # blt(x, y, img, u, v, w, h, [colkey], [rotate], [scale])
-        pyxel.blt(self.x,self.y, 0, 8,0, 8, 8)
+        self.player.draw()
 
 
 Game()
