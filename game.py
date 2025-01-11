@@ -51,7 +51,9 @@ class Game:
         tm = pyxel.tilemaps[0]
         px, py = self.player.xy
         COIN = 1,1
-        return tm.pget(px//8, py//8) == COIN
+        LEVEL_OFFSET = 8, 0
+        tile = tm.pget(px//8 + LEVEL_OFFSET[0], py//8 + LEVEL_OFFSET[1])
+        return tile == COIN
 
     def inside(self, x, y):
         return 8 <= x <= 48 and 8 <= y <= 48
