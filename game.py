@@ -1,5 +1,14 @@
 import pyxel
 
+# Tilemap layout
+# EMPTY  PLAYER
+# WALL   COIN
+EMPTY = 0,0
+PLAYER = 1,0
+WALL = 0,1
+COIN = 1,1
+
+
 class Player:
     def __init__(self, x, y):
         self.xy = x,y
@@ -43,7 +52,6 @@ class Game:
             pyxel.play(1,1)
             print("coin found")
             px, py = self.player.xy
-            EMPTY = 0,0
             # TODO currently not working
             pyxel.tilemaps[0].pset(px//8, py//8, EMPTY)
 
